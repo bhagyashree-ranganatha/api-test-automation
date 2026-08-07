@@ -43,11 +43,12 @@ public class HealthCheckTest {
     @Test
     public void verifyStatusEndpointReturns200() {
         given()
-                .header("Content-Type", "application/json")
-                .when()
-                .get("/api/status")
-                .then()
-                .statusCode(200)
-                .body("status", equalTo("UP"));
+            .header("Content-Type", "application/json")
+            .header("User-Agent", "QA-Automation-Suite-v1") // <-- The signature
+        .when()
+            .get("/api/status")
+        .then()
+            .statusCode(200)
+            .body("status", equalTo("UP"));
     }
 }
